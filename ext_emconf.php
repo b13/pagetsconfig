@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Add more options via PagesTSconfig',
-	'description' => 'Allows to modify TCA values via pagetsconfig',
+	'description' => 'Allows to modify TCA values via pagetsconfig for IRRE elements',
 	'category' => 'be',
 	'author' => 'Benjamin Mack',
 	'author_email' => 'typo3@b13.de',
@@ -24,10 +24,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
 	'author_company' => 'b:dreizehn GmbH',
-	'version' => '1.0.0',
+	'version' => '1.1.0',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '6.2.0-6.3.99',
+			'typo3' => '6.2.0-7.9.99',
 		),
 		'conflicts' => array(
 		),
