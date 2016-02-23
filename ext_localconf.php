@@ -21,3 +21,9 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Backend\\Form\\Utilit
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Backend\\Form\\Container\\InlineRecordContainer'] = array(
     'className' => 'B13\\Pagetsconfig\\Xclass\\InlineRecordContainer',
 );
+
+if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3')) {
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\B13\Pagetsconfig\Provider\PageTsConfigForeignTableProvider::class] = array(
+		\TYPO3\CMS\Backend\Form\FormDataProvider\PageTsConfigMerged::class
+	);
+}
