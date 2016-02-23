@@ -24,6 +24,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Backend\\Form\\Contai
 
 if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3')) {
 	$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\B13\Pagetsconfig\Provider\PageTsConfigForeignTableProvider::class] = array(
-		\TYPO3\CMS\Backend\Form\FormDataProvider\PageTsConfigMerged::class
+		\TYPO3\CMS\Backend\Form\FormDataProvider\PageTsConfig::class
 	);
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\TYPO3\CMS\Backend\Form\FormDataProvider\PageTsConfigMerged::class]['depends'][] = \B13\Pagetsconfig\Provider\PageTsConfigForeignTableProvider::class;
 }
