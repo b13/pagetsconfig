@@ -30,43 +30,37 @@ class PageTsConfigForeignTableProvider implements FormDataProviderInterface
      */
     public function addData(array $result)
     {
-        $mergedTsConfig = $result['pageTsConfig'];
-
-        if (empty($result['pageTsConfig']['TCEFORM.']) || !is_array($result['pageTsConfig']['TCEFORM.'])) {
-            $result['pageTsConfig'] = $mergedTsConfig;
+        if (empty($result['pageTsConfig']['TCEFORM.']) || !is_array($result['pageTsConfig']['TCEFORM.']) || !$result['isInlineChild']) {
             return $result;
-        }
-        $mergedTsConfig = $result['pageTsConfig'];
-        $type = $result['recordTypeValue'];
-        $table = $result['tableName'];
-        if ($result['isInlineChild']) {
+        } else {
+            $type = $result['recordTypeValue'];
             $table = $result['inlineParentTableName'];
-        }
-        // Merge TCEFORM.[table name].[field].types.[type] over TCEFORM.[table name].[field]
-        if (!empty($result['pageTsConfig']['TCEFORM.'][$table . '.'])
-            && is_array($result['pageTsConfig']['TCEFORM.'][$table . '.'])
-        ) {
-            foreach ($result['pageTsConfig']['TCEFORM.'][$table . '.'] as $fieldNameWithDot => $fullFieldConfiguration) {
-                $newFieldConfiguration = $fullFieldConfiguration;
-                if (!empty($fullFieldConfiguration['types.']) && is_array($fullFieldConfiguration['types.'])) {
-                    $typeSpecificConfiguration = $newFieldConfiguration['types.'];
-                    if (!empty($typeSpecificConfiguration[$type . '.']['foreign_table_configuration.']) && is_array($typeSpecificConfiguration[$type . '.']['foreign_table_configuration.'])) {
-                        foreach ($typeSpecificConfiguration[$type . '.']['foreign_table_configuration.'] as $overrideTable => $fieldConfigs) {
-                            foreach ($fieldConfigs as $fieldName => $fieldConfig) {
-                                $foreignOverriddenConfig = $mergedTsConfig['TCEFORM.'][$overrideTable][$fieldName];
-                                if (!is_array($foreignOverriddenConfig)) {
-                                    $foreignOverriddenConfig = array();
+            // Merge TCEFORM.[table name].[field].types.[type] over TCEFORM.[table name].[field]
+            if (!empty($result['pageTsConfig']['TCEFORM.'][$table . '.'])
+                && is_array($result['pageTsConfig']['TCEFORM.'][$table . '.'])
+            ) {
+                $mergedTsConfig = $result['pageTsConfig'];
+                foreach ($result['pageTsConfig']['TCEFORM.'][$table . '.'] as $fieldNameWithDot => $fullFieldConfiguration) {
+                    $newFieldConfiguration = $fullFieldConfiguration;
+                    if (!empty($fullFieldConfiguration['types.']) && is_array($fullFieldConfiguration['types.'])) {
+                        $typeSpecificConfiguration = $newFieldConfiguration['types.'];
+                        if (!empty($typeSpecificConfiguration[$type . '.']['foreign_table_configuration.']) && is_array($typeSpecificConfiguration[$type . '.']['foreign_table_configuration.'])) {
+                            foreach ($typeSpecificConfiguration[$type . '.']['foreign_table_configuration.'] as $overrideTable => $fieldConfigs) {
+                                foreach ($fieldConfigs as $fieldName => $fieldConfig) {
+                                    $foreignOverriddenConfig = $mergedTsConfig['TCEFORM.'][$overrideTable][$fieldName];
+                                    if (!is_array($foreignOverriddenConfig)) {
+                                        $foreignOverriddenConfig = array();
+                                    }
+                                    ArrayUtility::mergeRecursiveWithOverrule($foreignOverriddenConfig, $fieldConfig);
+                                    $mergedTsConfig['TCEFORM.'][$overrideTable][$fieldName] = $foreignOverriddenConfig;
                                 }
-                                ArrayUtility::mergeRecursiveWithOverrule($foreignOverriddenConfig, $fieldConfig);
-                                $mergedTsConfig['TCEFORM.'][$overrideTable][$fieldName] = $foreignOverriddenConfig;
                             }
                         }
                     }
                 }
+                $result['pageTsConfig'] = $mergedTsConfig;
             }
         }
-
-        $result['pageTsConfig'] = $mergedTsConfig;
         return $result;
     }
 }
