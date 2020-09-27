@@ -7,12 +7,12 @@
     "support": {
         "support": "https://github.com/b13/t3ext-pagetsconfig"
     },
-	"license": ["GPL-2.0+"],
+	"license": ["GPL-2.0-or-later"],
 	"require": {
 		"typo3/cms-backend": "*"
 	},
 	"replace": {
-		"pagetsconfig": "*"
+		"typo3-ter/pagetsconfig": "*"
 	},
 	"autoload": {
 		"psr-4": {
