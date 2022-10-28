@@ -1,7 +1,7 @@
 {
     "name": "b13/pagetsconfig",
     "type": "typo3-cms-extension",
-    "description": "Configure PageTSconfig options Inline Elements in TYPO3",
+    "description": "Advanced configuration options for PageTSConfig",
     "homepage": "https://github.com/b13/t3ext-pagetsconfig",
     "keywords": ["TYPO3 CMS", "TSconfig"],
     "support": {
