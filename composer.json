@@ -1,15 +1,15 @@
 {
     "name": "b13/pagetsconfig",
     "type": "typo3-cms-extension",
-    "description": "Advanced configuration options for PageTSConfig",
-    "homepage": "https://github.com/b13/t3ext-pagetsconfig",
-    "keywords": ["TYPO3 CMS", "TSconfig"],
+    "description": "Advanced configuration options for Page TsConfig",
+    "homepage": "https://github.com/b13/pagetsconfig",
+    "keywords": ["TYPO3 CMS", "Page TsConfig"],
     "support": {
-        "support": "https://github.com/b13/t3ext-pagetsconfig"
+        "support": "https://github.com/b13/pagetsconfig"
     },
 	"license": ["GPL-2.0+"],
 	"require": {
-		"typo3/cms-backend": "*"
+		"typo3/cms-backend": "^11.5"
 	},
 	"replace": {
 		"pagetsconfig": "*"
@@ -17,6 +17,11 @@
 	"autoload": {
 		"psr-4": {
 			"B13\\Pagetsconfig\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "pagetsconfig"
 		}
 	}
 }
