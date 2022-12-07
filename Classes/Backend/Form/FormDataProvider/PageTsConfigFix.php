@@ -28,7 +28,7 @@ class PageTsConfigFix implements FormDataProviderInterface
             $tables = $result['pageTsConfig']['TCEFORM.'];
             foreach ($tables as $tableName => $table) {
                 if (is_array($table) && $result['tableName'].'.' === $tableName) {
-                    if ($table['palettes.']) {
+                    if(is_array($table['palettes.'] ?? null)) {
                         foreach ($table['palettes.'] as $paletteName => $paletteSettings) {
                             if (isset($paletteSettings)) {
                                 $paletteName = substr($paletteName, 0, -1);
