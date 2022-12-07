@@ -1,15 +1,15 @@
 {
     "name": "b13/pagetsconfig",
     "type": "typo3-cms-extension",
-    "description": "Configure PageTSconfig options Inline Elements in TYPO3",
-    "homepage": "https://github.com/b13/t3ext-pagetsconfig",
-    "keywords": ["TYPO3 CMS", "TSconfig"],
+    "description": "Advanced configuration options for Page TsConfig",
+    "homepage": "https://b13.com",
+    "keywords": ["TYPO3 CMS", "Page TsConfig"],
     "support": {
-        "support": "https://github.com/b13/t3ext-pagetsconfig"
+        "support": "https://github.com/b13/pagetsconfig"
     },
 	"license": ["GPL-2.0-or-later"],
 	"require": {
-		"typo3/cms-backend": "*"
+        "typo3/cms-backend": "^10.4.18 || ^11.5"
 	},
 	"replace": {
 		"typo3-ter/pagetsconfig": "*"
@@ -19,4 +19,9 @@
 			"B13\\Pagetsconfig\\": "Classes/"
 		}
 	}
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "pagetsconfig"
+        }
+    }
 }
