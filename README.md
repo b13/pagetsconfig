@@ -15,6 +15,25 @@ This extension enables advanced configuration options using Page TsConfig for sp
 
 ## Use cases for this extension
 
+### Changing configuration for a field
+
+Sometimes you might need to adjust configuration for a field for parts of your TYPO3 page tree, like when working with
+multi-site setups. You can change the configuration for the `header` field using:
+
+```
+TCEFORM.tt_content.header.config.type = text
+TCEFORM.tt_content.header.config.rows = 2
+```
+
+This also works for certain the types only:
+
+```
+TCEFORM.tt_content.header.types.my_example_type.config.type = text
+TCEFORM.tt_content.header.types.my_example_type.config.rows = 3
+TCEFORM.tt_content.header.types.my_example_type.config.cols = 25
+```
+
+
 ### Changing configuration for inline fields
 
 Depending on your frontend design your "Element Component 1" might feature an image with a full palette of fields for 
