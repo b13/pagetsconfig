@@ -33,7 +33,6 @@ TCEFORM.tt_content.header.types.my_example_type.config.rows = 3
 TCEFORM.tt_content.header.types.my_example_type.config.cols = 25
 ```
 
-
 ### Changing configuration for inline fields
 
 Depending on your frontend design your "Element Component 1" might feature an image with a full palette of fields for 
