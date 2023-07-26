@@ -43,7 +43,7 @@ class PageTsConfigFix implements FormDataProviderInterface
                         }
                     }
                     foreach ($table as $columnName => $column) {
-                        if (isset($column['config.']['overrideChildTca.'])) {
+                        if (isset($column['config.'])) {
                             $columnName = substr($columnName,0,-1);
                             if (isset($result['processedTca']['columns'][$columnName]['config'])) {
                                 $config = GeneralUtility::removeDotsFromTS($column['config.']);
