@@ -27,8 +27,8 @@ class PageTsConfigFix implements FormDataProviderInterface
         if (isset($result['pageTsConfig']['TCEFORM.'])) {
             $tables = $result['pageTsConfig']['TCEFORM.'];
             foreach ($tables as $tableName => $table) {
-                if (is_array($table) && $result['tableName'].'.' === $tableName) {
-                    if(is_array($table['palettes.'] ?? null)) {
+                if (is_array($table) && $tableName === $result['tableName'] . '.') {
+                    if (is_array($table['palettes.'] ?? null)) {
                         foreach ($table['palettes.'] as $paletteName => $paletteSettings) {
                             if (isset($paletteSettings)) {
                                 $paletteName = substr($paletteName, 0, -1);
@@ -44,10 +44,10 @@ class PageTsConfigFix implements FormDataProviderInterface
                     }
                     foreach ($table as $columnName => $column) {
                         if (isset($column['config.'])) {
-                            $columnName = substr($columnName,0,-1);
+                            $columnName = substr($columnName, 0, -1);
                             if (isset($result['processedTca']['columns'][$columnName]['config'])) {
                                 $config = GeneralUtility::removeDotsFromTS($column['config.']);
-                                ArrayUtility::mergeRecursiveWithOverrule($result['processedTca']['columns'][$columnName]['config'],$config);
+                                ArrayUtility::mergeRecursiveWithOverrule($result['processedTca']['columns'][$columnName]['config'], $config);
                             }
                         }
                         if (isset($column['types.'], $result['processedTca']['ctrl']['type'])) {
