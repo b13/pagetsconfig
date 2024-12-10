@@ -14,7 +14,7 @@
     "GPL-2.0-or-later"
   ],
   "require": {
-    "typo3/cms-backend": "^11.5 || ^12.4"
+    "typo3/cms-backend": "^11.5 || ^12.4 || ^13.4"
   },
   "replace": {
     "typo3-ter/pagetsconfig": "*"
